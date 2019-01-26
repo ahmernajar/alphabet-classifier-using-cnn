@@ -16,22 +16,6 @@ from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.optimizers import Adam
 
-#Importing the dataset
-dataset = pd.read_csv('A_Z Handwritten Data.csv')
-X = dataset.iloc[: , 1:].values
-y = dataset.iloc[: , :1].values
-
-#Spliting the dataset for training and testing
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-
-
-X_test = X_test / 255.0
-X_test = X_test.reshape(-1,28,28,1)
-
-X_train = X_train / 255.0
-X_train = X_train.reshape(-1,28,28,1)
-
 #Building the CNN
 # Initialising the CNN
 classifier = Sequential()
