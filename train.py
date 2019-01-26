@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Sep 15 13:51:06 2018
 
 @author: ahmernajar
 """
-
+#Importing the Libraries
 import numpy as np 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -17,11 +16,12 @@ from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.optimizers import Adam
 
+#Importing the dataset
 dataset = pd.read_csv('A_Z Handwritten Data.csv')
 X = dataset.iloc[: , 1:].values
 y = dataset.iloc[: , :1].values
 
-
+#Spliting the dataset for training and testing
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
@@ -32,6 +32,7 @@ X_test = X_test.reshape(-1,28,28,1)
 X_train = X_train / 255.0
 X_train = X_train.reshape(-1,28,28,1)
 
+#Building the CNN
 # Initialising the CNN
 classifier = Sequential()
 
@@ -69,7 +70,7 @@ classifier.add(Dense(output_dim = 26, activation = 'softmax'))
 
 classifier.compile(optimizer = 'Adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 
-
+#Image Data generator
 from keras.preprocessing.image import ImageDataGenerator
 
 datagen = ImageDataGenerator(
@@ -87,6 +88,7 @@ datagen = ImageDataGenerator(
 
 datagen.fit(X_test)
 
+#OneHot Encoding
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 onehotencoder = OneHotEncoder(categorical_features = [0])
 y_test = onehotencoder.fit_transform(y_test).toarray()
@@ -94,6 +96,7 @@ y_test = onehotencoder.fit_transform(y_test).toarray()
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 onehotencoder = OneHotEncoder(categorical_features = [0])
 y_train = onehotencoder.fit_transform(y_train).toarray()
+
 
 classifier.fit_generator(datagen.flow(X_train, y_train , batch_size=86),
                          steps_per_epoch= 30,validation_data = (X_test,y_test),
