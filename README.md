@@ -9,6 +9,8 @@ https://www.kaggle.com/ashishguptajiit/handwritten-az
 
 # REQUIREMENTS
 Python 3.5,
-Keras,
+Scikit learn,
 Pandas,
-Numpy
+Numpy,
+Keras,
+Tensorflow
