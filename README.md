@@ -4,6 +4,7 @@ In this code i have used keras library with tensorflow backend
 
 # Dataset
 Dataset can be downloaded here
+https://www.kaggle.com/ashishguptajiit/handwritten-az
 
 
 # REQUIREMENTS
