@@ -7,7 +7,7 @@ Dataset can be downloaded here
 
 
 # REQUIREMENTS
-Python 3.5
-Keras
-Pandas
+Python 3.5\n
+Keras\n
+Pandas\n
 Numpy
